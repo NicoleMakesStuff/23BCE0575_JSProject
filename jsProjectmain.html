@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Interactive Weather App</title>
   <link rel="stylesheet" href="jsProjectStyles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <button id="dark-mode-toggle">🌙</button>
@@ -23,6 +24,10 @@
     <div class="forecast">
       <h2>Weekly Forecast</h2>
       <div id="forecast-list"></div>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="tempChart"></canvas>
     </div>
   </div>
 

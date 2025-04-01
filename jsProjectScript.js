@@ -7,6 +7,8 @@ const feelsLike = document.getElementById('feels-like');
 const humidity = document.getElementById('humidity');
 const forecastList = document.getElementById('forecast-list');
 const darkModeToggle = document.getElementById('dark-mode-toggle');
+const tempChartCanvas = document.getElementById('tempChart');
+let tempChart;
 
 // Get User Location
 navigator.geolocation.getCurrentPosition(position => {
@@ -28,18 +30,16 @@ async function getWeather(lat, lon) {
   humidity.textContent = `Humidity: ${data.main.humidity}%`;
   weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
-  // Change Background Based on Weather
   changeBackground(data.weather[0].main);
 }
 
-// Fetch Weekly Forecast
+// Fetch Hourly Forecast for Graph
 async function getForecast(lat, lon) {
   const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   const res = await fetch(url);
   const data = await res.json();
 
   forecastList.innerHTML = '';
-  // Filter to get one forecast per day (every 8th record)
   const dailyForecasts = data.list.filter((item, index) => index % 8 === 0);
 
   dailyForecasts.forEach(day => {
@@ -52,14 +52,41 @@ async function getForecast(lat, lon) {
     `;
     forecastList.appendChild(dayElement);
   });
+
+  updateTemperatureChart(data.list.slice(0, 8));
 }
 
-// Change Background Based on Weather
-function changeBackground(weather) {
-  document.body.classList.remove('sunny', 'rainy', 'snowy');
-  if (weather.includes('Rain')) document.body.classList.add('rainy');
-  if (weather.includes('Snow')) document.body.classList.add('snowy');
-  if (weather.includes('Clear')) document.body.classList.add('sunny');
+// Update Temperature Chart
+function updateTemperatureChart(forecastData) {
+  const labels = forecastData.map(item => new Date(item.dt * 1000).getHours() + ':00');
+  const temperatures = forecastData.map(item => item.main.temp);
+
+  if (tempChart) {
+    tempChart.destroy();
+  }
+
+  tempChart = new Chart(tempChartCanvas, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Temperature (°C)',
+        data: temperatures,
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderWidth: 2,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: { title: { display: true, text: 'Time' } },
+        y: { title: { display: true, text: 'Temperature (°C)' } }
+      }
+    }
+  });
 }
 
 // Dark Mode Toggle
