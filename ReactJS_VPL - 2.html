@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>React App</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Overall page styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #74ABE2, #5563DE);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    /* Card container */
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 600px;
+      width: 90%;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 3rem;
+      letter-spacing: 2px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+
+    footer {
+      font-size: 1rem;
+      margin-top: 30px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card" id="root"></div>
+
+  <script type="text/babel">
+    // Header Component with Random Greeting
+    function Header() {
+      const greetings = [
+        "Welcome",
+        "Hello",
+        "Hi there",
+        "Greetings",
+        "Hey, welcome"
+      ];
+      const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+      return <h1>{randomGreeting}</h1>;
+    }
+
+    // Content Component with Random Name
+    const Content = () => {
+      const names = ["Suchetana", "Sujatro", "Alan", "Zeeshan", "Chinmayi", "Akshyaa", "Yash"];
+      const randomName = names[Math.floor(Math.random() * names.length)];
+      return <p>{randomName}</p>;
+    };
+
+    // Footer Component
+    const Footer = () => {
+      return <footer>&copy; {new Date().getFullYear()} All Rights Reserved.</footer>;
+    };
+
+    // App Component
+    const App = () => (
+      <>
+        <Header />
+        <Content />
+        <Footer />
+      </>
+    );
+
+    // Render App
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+
+</html>

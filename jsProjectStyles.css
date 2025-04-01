@@ -1,0 +1,116 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f4f9;
+  color: #333;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Weather Card and Forecast now use flexbox for centering */
+.weather-card,
+.forecast {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#weather-icon {
+  width: 100px;
+}
+
+#city-name {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#temperature {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+#description,
+#feels-like,
+#humidity {
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+/* Forecast Section */
+#forecast-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.forecast-item {
+  text-align: center;
+}
+
+.forecast-item img {
+  width: 40px;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Update cards for dark mode so that text remains visible */
+.dark-mode .weather-card,
+.dark-mode .forecast {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Button styling */
+#dark-mode-toggle {
+  background-color: #5c67f2;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* Weather-based background animations */
+/*.rainy {
+  background: url('raingif.gif') no-repeat center center/cover;
+}
+
+.sunny {
+  background: url('sunnygif.gif') no-repeat center center/cover;
+}
+
+.snowy {
+  background: url('snowygif.gif') no-repeat center center/cover;
+}*/
