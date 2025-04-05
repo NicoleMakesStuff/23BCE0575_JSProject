@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Weather App</title>
+  <link rel="stylesheet" href="jsProjectStyles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <button id="dark-mode-toggle">🌙</button>
+  <div class="container">
+    <div class="weather-card">
+      <h1 id="city-name">--</h1>
+      <div id="weather-info">
+        <img id="weather-icon" src="" alt="Weather Icon" />
+        <p id="temperature">--°C</p>
+        <p id="description">--</p>
+        <p id="feels-like">Feels like: --°C</p>
+        <p id="humidity">Humidity: --%</p>
+      </div>
+    </div>
+
+    <div class="forecast">
+      <h2>Weekly Forecast</h2>
+      <div id="forecast-list"></div>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="tempChart"></canvas>
+    </div>
+  </div>
+
+  <script src="jsProjectScript.js"></script>
+</body>
+</html>
